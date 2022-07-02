@@ -1,14 +1,16 @@
+use rand::Rng;
 use std::io;
-use rand;
 
 fn main() {
-    let generated_number = rand::thread_rng().gen_range(1..=100);
-    
+    // generate number from 1 to 100
+    let generated_number = rand::thread_rng().gen_range(1..101);
+
     loop {
         let mut guess = String::new();
         println!("Guess the number: ");
 
-        io::stdin().read_line(&mut guess)
+        io::stdin()
+            .read_line(&mut guess)
             .expect("Failed to read line");
 
         let guess: u8 = match guess.trim().parse() {
@@ -16,7 +18,7 @@ fn main() {
             Err(_) => {
                 println!("Please enter a number");
                 continue;
-            },
+            }
         };
 
         println!("You guessed: {}", guess);
@@ -29,5 +31,5 @@ fn main() {
             println!("You win!");
             break;
         }
-    } 
+    }
 }
