@@ -11,9 +11,37 @@ struct Customer {
     phone_number: String,
 }
 
-enum Animal {
-    Dog { name: String, sound: String },
-    Cat { name: String, sound: String },
+// Generic enum
+
+enum Option<T> {
+    None,
+    Some(T),
+}
+
+// Implementation for generic enum
+impl<T> Option<T> {
+    fn unwrap(self) -> T {
+        match self {
+            Option::None => panic!("Called Option::unwrap() on a None value"),
+            Option::Some(val) => val,
+        }
+    }
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
 }
 
 fn main() {
@@ -29,15 +57,12 @@ fn main() {
         phone_number: "0987654321".to_string(),
     };
 
-    let dog = Animal::Dog {
-        name: "Fido".to_string(),
-        sound: "woof".to_string(),
-    };
+    let some_number = Some(4);
+    let some_string = Some("a string");
 
-    let cat = Animal::Cat {
-        name: "Fluffy".to_string(),
-        sound: "meow".to_string(),
-    };
+    println!("some_number = {:?}", some_number);
+    println!("some_string = {:?}", some_string);
+    println!("{}", some_number.unwrap());
 
-    println!("cat is {:?}", cat);
+    println!("{}", value_in_cents(Coin::Dime));
 }
