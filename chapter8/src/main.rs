@@ -32,3 +32,5 @@ fn main() {
     let s = format!("{}-{}-{}", s1, s2, s3);
     println!("{}", s);
 }
+
+
