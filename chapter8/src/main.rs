@@ -1,36 +1,26 @@
+use crate::services::company::Company;
+use crate::services::company::Employee;
+use std::collections::HashMap;
+// use crate::services::hashmaps;
+// use crate::services::strings;
+// use crate::services::vectors;
+
+pub mod services;
+
 fn main() {
-    // Vectors
-    let mut v: Vec<i32> = Vec::new();
+    // vectors::display_vectors();
+    // strings::display_strings();
+    // hashmaps::display_hash_maps();
 
-    v.push(5);
-    v.push(6);
-    v.push(7);
-    v.push(8);
+    let employees: HashMap<String, Employee> = HashMap::new();
 
-    let third: &i32 = &v[2];
-    println!("The third element is {}", third);
-    println!("The third element is {}", v.get(2).unwrap());
+    let mut c = Company {
+        name: "IBM".to_string(),
+        employees,
+    };
 
-    let mut v = vec![100, 32, 57];
-    for i in &mut v {
-        *i += 50;
-        println!("{}", i);
-    }
-
-    // Strings
-
-    let s1 = String::from("Hello, ");
-    let s2 = String::from("world!");
-    let s3 = s1 + &s2.to_owned(); // note s1 has been moved here and can no longer be used
-
-    println!("{}", s3);
-
-    let s1 = String::from("tic");
-    let s2 = String::from("tac");
-    let s3 = String::from("toe");
-
-    let s = format!("{}-{}-{}", s1, s2, s3);
-    println!("{}", s);
+    c.add_employee("John", 30, 1000, "Manager");
+    c.add_employee("Adam", 35, 10000, "CEO");
+    c.add_employee("Jane", 21, 1500, "Accountant");
+    c.display_employees();
 }
-
-
